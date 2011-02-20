@@ -1,0 +1,5 @@
+name: RoomMapper
+main: com.cheesier.Roomy.RoomMapper
+version: 1.0
+authors: 
+    - cheesier
