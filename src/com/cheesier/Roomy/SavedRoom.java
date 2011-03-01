@@ -36,4 +36,8 @@ public class SavedRoom {
 			max.getBlockX()+s+max.getBlockY()+s+max.getBlockZ();
 	}
 	
+	public String toString() {
+		return this.toSaveFormat();
+	}
+	
 }

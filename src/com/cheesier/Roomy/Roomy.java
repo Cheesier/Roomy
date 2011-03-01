@@ -8,6 +8,8 @@ import java.util.logging.Logger;
 import com.nijiko.permissions.PermissionHandler;
 import com.nijikokun.bukkit.Permissions.Permissions;
 
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event.Priority;
 import org.bukkit.event.Event;
@@ -16,6 +18,7 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.util.Vector;
+import org.bukkit.util.config.Configuration;
 
 /**
  * Roomy for Bukkit
@@ -28,51 +31,96 @@ public class Roomy extends JavaPlugin {
     private final RoomyPlayerListener playerListener = new RoomyPlayerListener(this);
     private final RoomyBlockListener blockListener = new RoomyBlockListener(this);
     
+    //The plugin, Probably a bad way of doing it...
+    public static Plugin plugin;
+    
     //The implementation of Nijikokun's "Permission" plugin
     public static PermissionHandler Permissions = null; // permissions
     private static Logger log = Logger.getLogger("Minecraft");
     
-    // 
+    // The saved room and setting for the /roomy command
+    //public static HashMap<String, >
     public static List<SavedRoom> savedRooms = new ArrayList<SavedRoom>();
     public static HashMap<Player, Boolean> roomSetting = new HashMap<Player, Boolean>();
     
     // before we make a room, we need 2 vectors to define it
-    // 
     public static HashMap<Player, Vector> preSaved1 = new HashMap<Player,Vector>();
     public static HashMap<Player, Vector> preSaved2 = new HashMap<Player,Vector>();
     
     // Temporary!!! (maybe)
     public static HashMap<Player, List<String>> lastRoom = new HashMap<Player, List<String>>();
     public static boolean track = false;
+    
+    // Config file
+    public static Configuration config;
 
     
 
     public void onEnable() {
-    	RoomyFileManager.makeFile(); // makes config file if needed
-    	RoomyFileManager.load(); // load all the rooms and put in "savedRooms"
-    	
-    	//The implementation of Nijikokun's "Permission" plugin
-    	setupPermissions();
+    	plugin = this;
+    	// load config file
+    	config = this.getConfiguration();
         
         // Register our events
         PluginManager pm = getServer().getPluginManager();
-        pm.registerEvent(Event.Type.PLAYER_COMMAND, playerListener, Priority.Normal, this);
         pm.registerEvent(Event.Type.PLAYER_MOVE, playerListener, Priority.Normal, this);
         pm.registerEvent(Event.Type.BLOCK_DAMAGED, blockListener, Priority.Normal, this);
         pm.registerEvent(Event.Type.BLOCK_RIGHTCLICKED, blockListener, Priority.Normal, this);
         
         
-        // Say hello in a fancy way
+        // Say hello in a fancy way and load the rooms :)
         PluginDescriptionFile pdfFile = this.getDescription();
-        log.info("[" + pdfFile.getName() + "] version [" + pdfFile.getVersion() + "] loaded");
+        int numLoadedRooms = RoomyFileManager.load();
+        
+        //The implementation of Nijikokun's "Permission" plugin
+    	setupPermissions();
+        
+        if (numLoadedRooms != -1) {
+        	log.info("[" + pdfFile.getName() + "] version [" + pdfFile.getVersion() + "] loaded " + numLoadedRooms + " Room's");
+        }
+        else {
+        	log.warning("[" + pdfFile.getName() + "] version [" + pdfFile.getVersion() + "] loaded, but did not find 'Roomy/config.yml'");
+        }
     }
     
     
     public void onDisable() {
-    	int saved = RoomyFileManager.save();
+    	int savedNumRooms = RoomyFileManager.save(); // save and see how many rooms that was saved
+    	//System.out.println("[Roomy] Saved: " + RoomyFileManager.newSave());
     	
     	PluginDescriptionFile pdfFile = this.getDescription();
-        log.info("[" + pdfFile.getName() + "] saved " + saved + " rooms");
+        log.info("[" + pdfFile.getName() + "] saved " + savedNumRooms + " rooms");
+    }
+    
+    // Check for all the commands that the plugin registered
+    public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args) {
+    	String cmd = command.getName().toLowerCase();
+    	
+    	if (cmd.equalsIgnoreCase("roomy"))
+    		return RoomyCommands.roomyCmd(sender, args);
+    	
+    	else if (cmd.equalsIgnoreCase("setroom"))
+    		return RoomyCommands.setroomCmd(sender, args);
+    	
+    	else if(cmd.equalsIgnoreCase("loadrooms"))
+    		return RoomyCommands.loadroomsCmd(sender, args);
+    	
+    	else if(cmd.equalsIgnoreCase("saverooms"))
+    		return RoomyCommands.saveroomsCmd(sender, args);
+    	
+    	else if(cmd.equalsIgnoreCase("track"))
+    		return RoomyCommands.trackCmd(sender, args);
+    	
+    	else if(cmd.equalsIgnoreCase("inside"))
+    		return RoomyCommands.insideCmd(sender, args);
+    	
+    	else if(cmd.equalsIgnoreCase("removeroom"))
+    		return RoomyCommands.removeroomCmd(sender, args);
+    	
+    	else if(cmd.equalsIgnoreCase("listrooms"))
+    		return RoomyCommands.listroomsCmd(sender, args);
+    	
+    	return false;
     }
     
     

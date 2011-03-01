@@ -3,3 +3,35 @@ main: com.cheesier.Roomy.Roomy
 version: 1.1
 authors: 
     - Cheesier
+commands:
+  setroom:
+    description: Saved a room
+    usage: /<command> <roomname>
+    
+  track:
+    description: Toggles tracking for room checking
+    usage: /<command>
+    
+  loadrooms:
+    description: Reloads the room from file
+    usage: /<command>
+    
+  saverooms:
+    description: Saves all the rooms to file
+    usage: /<command>
+    
+  roomy:
+    description: Toggles the RoomyTook to mark a room
+    usage: /<command>
+    
+  inside:
+    description: see what rooms you/player is in
+    usage: /<command> [player]
+    
+  removeroom:
+    description: Removes a room
+    usage: /<command> <roomname>
+    
+  listrooms:
+    description: Lists all rooms
+    usage: /<command>
