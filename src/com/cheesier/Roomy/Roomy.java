@@ -44,8 +44,8 @@ public class Roomy extends JavaPlugin {
     public static HashMap<Player, Boolean> roomSetting = new HashMap<Player, Boolean>();
     
     // before we make a room, we need 2 vectors to define it
-    public static HashMap<Player, Vector> preSaved1 = new HashMap<Player,Vector>();
-    public static HashMap<Player, Vector> preSaved2 = new HashMap<Player,Vector>();
+    public static HashMap<Player, Vector> preSaved1 = new HashMap<Player, Vector>();
+    public static HashMap<Player, Vector> preSaved2 = new HashMap<Player, Vector>();
     
     // Temporary!!! (maybe)
     public static HashMap<Player, List<String>> lastRoom = new HashMap<Player, List<String>>();

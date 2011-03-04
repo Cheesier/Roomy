@@ -114,7 +114,7 @@ public class RoomyCommands {
 				return true;
 			}
 		}
-		else {
+		else { // Console
 			System.out.println("This command cannot be used from a commandline.");
 			return true;
 		}
