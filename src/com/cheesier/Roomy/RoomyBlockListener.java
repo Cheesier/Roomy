@@ -15,12 +15,13 @@ import org.bukkit.util.Vector;
 @SuppressWarnings("unused")
 public class RoomyBlockListener extends BlockListener {
     private final Roomy plugin;
-
+    
     public RoomyBlockListener(final Roomy plugin) {
     	this.plugin = plugin;
     }
 
-
+    
+    // Left click
     public void onBlockDamage(BlockDamageEvent event) {
     	Player player = event.getPlayer();
 
@@ -29,24 +30,23 @@ public class RoomyBlockListener extends BlockListener {
     		if (event.getDamageLevel().equals(BlockDamageLevel.STARTED)) { // as a player starts hitting a block
     			if (player.getItemInHand().getTypeId() == 271) {
     				player.sendMessage("¤eFirst point of room set");
-    				Block b = event.getBlock();
 
-    				Roomy.preSaved1.put(player, new Vector(b.getX(), b.getY(), b.getZ()));
+    				Roomy.preSaved1.put(player, event.getBlock().getLocation().toVector());
     			}
     		}
     	}
     }
 
-
+    
+    // Right click
     public void onBlockRightClick(BlockRightClickEvent event) {
     	Player player = event.getPlayer();
     	
     	if (Roomy.roomSetting.containsKey(player) && Roomy.roomSetting.get(player) == true) {
 	    	if (player.getItemInHand().getTypeId() == 271) {
 	    		player.sendMessage("¤eSecond point of room set");
-	    		Block b = event.getBlock();
 	    		
-	    		Roomy.preSaved2.put(player, new Vector(b.getX(), b.getY(), b.getZ()));
+	    		Roomy.preSaved2.put(player, event.getBlock().getLocation().toVector());
 	    	}
     	}
     }
