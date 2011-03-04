@@ -5,7 +5,7 @@ authors:
     - Cheesier
 commands:
   setroom:
-    description: Saved a room
+    description: Save a room with the given name
     usage: /<command> <roomname>
     
   track:
