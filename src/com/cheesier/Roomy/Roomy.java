@@ -69,7 +69,8 @@ public class Roomy extends JavaPlugin {
     	// load config file
     	config = this.getConfiguration();
     	
-    	RoomyRoomManager.startPlayerTracking();
+    	// Start all the players timers
+    	RoomyLibrary.startPlayerTracking();
     	
         // Register our events
         PluginManager pm = getServer().getPluginManager();

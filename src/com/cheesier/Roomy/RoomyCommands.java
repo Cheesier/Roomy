@@ -221,16 +221,16 @@ public class RoomyCommands {
 				player.sendMessage(ChatColor.RED + "You do not have permission to use that command.");
 				return true;
 			}
-			List<String> allRooms = RoomyRoomManager.getAllRooms();
-			String strAllRooms = RoomyRoomManager.stringlistToString(allRooms, true); // true for color, only players
+			List<String> allRooms = RoomyLibrary.getAllRooms();
+			String strAllRooms = RoomyLibrary.stringlistToString(allRooms, true); // true for color, only players
 			player.sendMessage("Rooms:");
 			player.sendMessage(strAllRooms);
 			return true;
 			
 		}
 		else {
-			List<String> allRooms = RoomyRoomManager.getAllRooms();
-			String strAllRooms = RoomyRoomManager.stringlistToString(allRooms, false); // true for color, only players
+			List<String> allRooms = RoomyLibrary.getAllRooms();
+			String strAllRooms = RoomyLibrary.stringlistToString(allRooms, false); // true for color, only players
 			log.info("Rooms: " + strAllRooms);
 			return true;
 		}
@@ -248,18 +248,18 @@ public class RoomyCommands {
 			
 			// not targeting yourself
 			if (args.length == 1) {
-				Player target = RoomyRoomManager.getPlayerFromName(args[0]);
+				Player target = RoomyLibrary.getPlayerFromName(args[0]);
 				if (!(target instanceof Player)) { // see if target actually is a player
 					player.sendMessage(ChatColor.RED + "Player was not found");
 					return true;
 				}
-				String tell = RoomyRoomManager.stringlistToString(RoomyRoomManager.getRoomsIn(target), true);
+				String tell = RoomyLibrary.stringlistToString(RoomyLibrary.getRoomsIn(target), true);
 				player.sendMessage(target.getName() + " is in the rooms: " + tell);
 				return true;
 			}
 			// target yourself
 			else {
-				String tell = RoomyRoomManager.stringlistToString(RoomyRoomManager.getRoomsIn(player), true);
+				String tell = RoomyLibrary.stringlistToString(RoomyLibrary.getRoomsIn(player), true);
 				player.sendMessage("You are in the following rooms: " + tell);
 				return true;
 			}
@@ -267,12 +267,12 @@ public class RoomyCommands {
 		}
 		else {
 			if (args.length == 1) {
-				Player target = RoomyRoomManager.getPlayerFromName(args[0]);
+				Player target = RoomyLibrary.getPlayerFromName(args[0]);
 				if (!(target instanceof Player)) { // see if target actually is a player
 					log.info("Player was not found");
 					return true;
 				}
-				String tell = RoomyRoomManager.stringlistToString(RoomyRoomManager.getRoomsIn(target), false);
+				String tell = RoomyLibrary.stringlistToString(RoomyLibrary.getRoomsIn(target), false);
 				log.info(target.getName() + " is in the rooms: " + tell);
 				return true;
 			}

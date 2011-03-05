@@ -19,7 +19,7 @@ public class RoomyTimedCheck implements Runnable {
     }
 	
 	public static void addLastRoom(Player player) {
-		List<String> inRooms = RoomyRoomManager.getRoomsIn(player);
+		List<String> inRooms = RoomyLibrary.getRoomsIn(player);
 		if (!Roomy.lastRoom.containsKey(player)) { // add players last room
 			Roomy.lastRoom.put(player, inRooms);
 		}
@@ -27,7 +27,7 @@ public class RoomyTimedCheck implements Runnable {
 			if (Roomy.lastRoom.get(player).hashCode() != inRooms.hashCode()) {
 				Roomy.lastRoom.put(player, inRooms);
 				if (inRooms.size() >= 1)
-					player.sendMessage("Welcome to room: " + RoomyRoomManager.stringlistToString(inRooms, true));
+					player.sendMessage("Welcome to room: " + RoomyLibrary.stringlistToString(inRooms, true));
 			}
 		}
 	}

@@ -29,7 +29,7 @@ public class RoomyPlayerListener extends PlayerListener {
 	
 	
 	public void onPlayerJoin(PlayerEvent event) {
-		RoomyRoomManager.startCheckTimer(event.getPlayer());
+		RoomyLibrary.startCheckTimer(event.getPlayer());
 	}
 	
 	public void onPlayerQuit(PlayerEvent event) {
