@@ -30,6 +30,7 @@ import org.bukkit.util.config.Configuration;
 public class Roomy extends JavaPlugin {
     private final RoomyPlayerListener playerListener = new RoomyPlayerListener(this);
     private final RoomyBlockListener blockListener = new RoomyBlockListener(this);
+    private final RoomyAPI roomyAPI = new RoomyAPI();
     
     //The plugin, Probably a bad way of doing it...
     public static Plugin plugin;
@@ -53,6 +54,11 @@ public class Roomy extends JavaPlugin {
     
     // Config file
     public static Configuration config;
+    
+    
+    public RoomyAPI getAPI() {
+    	return roomyAPI;
+    }
 
     
 
@@ -121,10 +127,6 @@ public class Roomy extends JavaPlugin {
     		return RoomyCommands.listroomsCmd(sender, args);
     	
     	return false;
-    }
-    
-    public static boolean isInRoom(Player player, String room) {
-    	return RoomyRoomManager.isInRoom(player, room);
     }
     
     
