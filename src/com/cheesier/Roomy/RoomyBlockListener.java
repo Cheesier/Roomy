@@ -19,7 +19,7 @@ public class RoomyBlockListener extends BlockListener {
     public RoomyBlockListener(final Roomy plugin) {
     	this.plugin = plugin;
     }
-
+    
     
     // Left click
     public void onBlockDamage(BlockDamageEvent event) {
