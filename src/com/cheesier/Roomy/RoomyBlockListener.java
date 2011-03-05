@@ -25,7 +25,7 @@ public class RoomyBlockListener extends BlockListener {
     public void onBlockDamage(BlockDamageEvent event) {
     	Player player = event.getPlayer();
 
-    	if (Roomy.roomSetting.containsKey(player) && Roomy.roomSetting.get(player) == true) {
+    	if (Roomy.roomySetting.containsKey(player) && Roomy.roomySetting.get(player) == true) {
     		
     		if (event.getDamageLevel().equals(BlockDamageLevel.STARTED)) { // as a player starts hitting a block
     			if (player.getItemInHand().getTypeId() == 271) {
@@ -42,7 +42,7 @@ public class RoomyBlockListener extends BlockListener {
     public void onBlockRightClick(BlockRightClickEvent event) {
     	Player player = event.getPlayer();
     	
-    	if (Roomy.roomSetting.containsKey(player) && Roomy.roomSetting.get(player) == true) {
+    	if (Roomy.roomySetting.containsKey(player) && Roomy.roomySetting.get(player) == true) {
 	    	if (player.getItemInHand().getTypeId() == 271) {
 	    		player.sendMessage("¤eSecond point of room set");
 	    		

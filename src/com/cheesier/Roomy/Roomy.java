@@ -42,7 +42,7 @@ public class Roomy extends JavaPlugin {
     // The saved room and setting for the /roomy command
     //public static HashMap<String, >
     public static List<SavedRoom> savedRooms = new ArrayList<SavedRoom>();
-    public static HashMap<Player, Boolean> roomSetting = new HashMap<Player, Boolean>();
+    public static HashMap<Player, Boolean> roomySetting = new HashMap<Player, Boolean>();
     public static HashMap<Player, Integer> checkTimers = new HashMap<Player, Integer>();
     public static int timerInterval = 1;
     

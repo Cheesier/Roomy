@@ -102,13 +102,13 @@ public class RoomyCommands {
 				return true;
 			}
 
-			if (!Roomy.roomSetting.containsKey(player)) { // add user
-				Roomy.roomSetting.put(player, true);
+			if (!Roomy.roomySetting.containsKey(player)) { // add user
+				Roomy.roomySetting.put(player, true);
 				player.sendMessage("RoomTool ¤2enabled¤f, uses same item as WorldEdit(Wooden axe) id: 271");
 				return true;
 			}else{
-				boolean newVal = !Roomy.roomSetting.get(player);
-				Roomy.roomSetting.put(player, newVal);
+				boolean newVal = !Roomy.roomySetting.get(player);
+				Roomy.roomySetting.put(player, newVal);
 
 				player.sendMessage("RoomyTool " + (newVal?"¤2enabled¤f, item id 271 (Wooden axe)" : "RoomyTool ¤cdisabled"));
 				return true;
