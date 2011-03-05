@@ -16,7 +16,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 /*
  * Much nicer code now that all the commands moved outta here
- * int timeId = getServer().getScheduler().scheduleSyncRepeatingTask(this, new RoomyTimedCheck(), 200, 200);
+ *
  */
 
 @SuppressWarnings("unused")
