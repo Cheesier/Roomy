@@ -123,6 +123,10 @@ public class Roomy extends JavaPlugin {
     	return false;
     }
     
+    public static boolean isInRoom(Player player, String room) {
+    	return RoomyRoomManager.isInRoom(player, room);
+    }
+    
     
     //The implementation of Nijikokun's "Permission" plugin
     public void setupPermissions() {

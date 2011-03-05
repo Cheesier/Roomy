@@ -41,11 +41,19 @@ public class RoomyRoomManager {
 			SavedRoom sv = it.next();
 			if (sv.isInAABB(getPlayerVector(player))) {
 				if (!roomsInside.contains(sv.getName())) {
-					roomsInside.add(sv.getName());
+					roomsInside.add(sv.getName().toLowerCase());
 				}
 			}
 		}
 		return roomsInside;
+	}
+	
+	
+	public static boolean isInRoom(Player player, String room) {
+		if (getRoomsIn(player).contains(room.toLowerCase())) {
+			return true;
+		}
+		return false;
 	}
 	
 	
