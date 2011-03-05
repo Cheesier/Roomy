@@ -43,6 +43,8 @@ public class Roomy extends JavaPlugin {
     //public static HashMap<String, >
     public static List<SavedRoom> savedRooms = new ArrayList<SavedRoom>();
     public static HashMap<Player, Boolean> roomSetting = new HashMap<Player, Boolean>();
+    public static HashMap<Player, Integer> checkTimers = new HashMap<Player, Integer>();
+    public static int timerInterval = 1;
     
     // before we make a room, we need 2 vectors to define it
     public static HashMap<Player, Vector> preSaved1 = new HashMap<Player, Vector>();
@@ -66,12 +68,15 @@ public class Roomy extends JavaPlugin {
     	plugin = this;
     	// load config file
     	config = this.getConfiguration();
-        
+    	
+    	RoomyRoomManager.startPlayerTracking();
+    	
         // Register our events
         PluginManager pm = getServer().getPluginManager();
-        pm.registerEvent(Event.Type.PLAYER_MOVE, playerListener, Priority.Normal, this);
-        pm.registerEvent(Event.Type.BLOCK_DAMAGED, blockListener, Priority.Normal, this);
-        pm.registerEvent(Event.Type.BLOCK_RIGHTCLICKED, blockListener, Priority.Normal, this);
+        pm.registerEvent(Event.Type.PLAYER_JOIN, playerListener, Priority.Monitor, this);
+        pm.registerEvent(Event.Type.PLAYER_QUIT, playerListener, Priority.Monitor, this);
+        pm.registerEvent(Event.Type.BLOCK_DAMAGED, blockListener, Priority.Monitor, this);
+        pm.registerEvent(Event.Type.BLOCK_RIGHTCLICKED, blockListener, Priority.Monitor, this);
         
         
         // Say hello in a fancy way and load the rooms :)

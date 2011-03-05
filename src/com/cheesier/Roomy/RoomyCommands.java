@@ -209,7 +209,7 @@ public class RoomyCommands {
 				log.info("Room not found.");
 			}
 		}
-		return false;
+		return true;
 	}
 
 	// tells you all the rooms available

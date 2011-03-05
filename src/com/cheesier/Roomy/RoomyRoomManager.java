@@ -7,6 +7,7 @@ import java.util.Random;
 import java.util.logging.Logger;
 
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
@@ -17,12 +18,14 @@ public class RoomyRoomManager {
 	// Say something like [Roomy] before we try talk to the commandline
 	private static String infoName = "[" + Roomy.plugin.getDescription().getName() + "]";
 	
+	
 	// Returns the player of a specified string
 	public static Player getPlayerFromName(String playerName) {
 		List<Player> players = Roomy.plugin.getServer().matchPlayer(playerName);
 		// if not just one player popped up, say so :)
 		return (players.size() == 1 ? players.get(0) : null);
 	}
+	
 	
 	// Gets the players vector
 	public static Vector getPlayerVector(Player player) {
@@ -70,6 +73,21 @@ public class RoomyRoomManager {
 		return rooms;
 	}
 	
+	public static void startCheckTimer(Player player) {
+		int timeId = Roomy.plugin.getServer().getScheduler().scheduleSyncRepeatingTask(Roomy.plugin, new RoomyTimedCheck(player), 0l, Roomy.timerInterval*20);
+		Roomy.checkTimers.put(player, timeId);
+	}
+	
+	public static void startPlayerTracking() {
+		Iterator<World> worldIt = Roomy.plugin.getServer().getWorlds().iterator();
+    	while (worldIt.hasNext()) {
+    		Iterator<Player> playerIt = worldIt.next().getPlayers().iterator();
+    		while (playerIt.hasNext()) {
+    			Player player = playerIt.next();
+    			RoomyRoomManager.startCheckTimer(player);
+    		}
+    	}
+	}
 	
 	public static String stringlistToString(List<String> list, boolean color) {
 		Iterator<String> it = list.iterator();
