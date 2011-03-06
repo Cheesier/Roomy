@@ -21,23 +21,6 @@ public class RoomyBlockListener extends BlockListener {
     }
     
     
-    // Left click
-    public void onBlockDamage(BlockDamageEvent event) {
-    	Player player = event.getPlayer();
-
-    	if (Roomy.roomySetting.containsKey(player) && Roomy.roomySetting.get(player) == true) {
-    		
-    		if (event.getDamageLevel().equals(BlockDamageLevel.STARTED)) { // as a player starts hitting a block
-    			if (player.getItemInHand().getTypeId() == 271) {
-    				player.sendMessage("¤eFirst point of room set");
-
-    				Roomy.preSaved1.put(player, event.getBlock().getLocation().toVector());
-    			}
-    		}
-    	}
-    }
-
-    
     // Right click
     public void onBlockRightClick(BlockRightClickEvent event) {
     	Player player = event.getPlayer();

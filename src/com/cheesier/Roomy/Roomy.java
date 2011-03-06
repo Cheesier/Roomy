@@ -76,7 +76,7 @@ public class Roomy extends JavaPlugin {
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvent(Event.Type.PLAYER_JOIN, playerListener, Priority.Monitor, this);
         pm.registerEvent(Event.Type.PLAYER_QUIT, playerListener, Priority.Monitor, this);
-        pm.registerEvent(Event.Type.BLOCK_DAMAGED, blockListener, Priority.Monitor, this);
+        pm.registerEvent(Event.Type.PLAYER_ANIMATION, playerListener, Priority.Monitor, this);
         pm.registerEvent(Event.Type.BLOCK_RIGHTCLICKED, blockListener, Priority.Monitor, this);
         
         
