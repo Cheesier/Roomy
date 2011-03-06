@@ -33,7 +33,7 @@ public class Roomy extends JavaPlugin {
     private final RoomyAPI roomyAPI = new RoomyAPI();
     
     //The plugin, Probably a bad way of doing it...
-    public static Plugin plugin;
+    public static Roomy plugin;
     
     //The implementation of Nijikokun's "Permission" plugin
     public static PermissionHandler Permissions = null; // permissions

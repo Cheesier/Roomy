@@ -9,7 +9,6 @@ public class RoomyTimedCheck implements Runnable {
 	
 	RoomyTimedCheck(Player player) {
 		this.player = player;
-		System.out.println("Ran!");
 	}
 	
 	public void run() {
@@ -26,8 +25,9 @@ public class RoomyTimedCheck implements Runnable {
 		else {
 			if (Roomy.lastRoom.get(player).hashCode() != inRooms.hashCode()) {
 				Roomy.lastRoom.put(player, inRooms);
-				if (inRooms.size() >= 1)
-					player.sendMessage("Welcome to room: " + RoomyLibrary.stringlistToString(inRooms, true));
+				
+				RoomyEvent event = new RoomyEvent(RoomyEvent.Reason.ROOM_CHANGE, player, inRooms);
+				Roomy.plugin.getServer().getPluginManager().callEvent(event);
 			}
 		}
 	}
