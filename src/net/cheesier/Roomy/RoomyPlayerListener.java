@@ -6,9 +6,11 @@ import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerAnimationEvent;
 import org.bukkit.event.player.PlayerAnimationType;
 import org.bukkit.event.player.PlayerEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerListener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
@@ -59,6 +61,21 @@ public class RoomyPlayerListener extends PlayerListener {
 					Roomy.preSaved1.put(player,block.getLocation().toVector());
 				}
 			}
+		}
+	}
+	
+	// Rightclick marking a position (Position 2)
+	public void onPlayerInteract(PlayerInteractEvent event) {
+		if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+			Player player = event.getPlayer();
+	    	
+	    	if (Roomy.roomySetting.containsKey(player) && Roomy.roomySetting.get(player) == true) {
+		    	if (player.getItemInHand().getTypeId() == 271) {
+		    		player.sendMessage("¤eSecond point of room set");
+		    		
+		    		Roomy.preSaved2.put(player, event.getClickedBlock().getLocation().toVector());
+		    	}
+	    	}
 		}
 	}
 }

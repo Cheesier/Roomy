@@ -26,10 +26,13 @@ import org.bukkit.util.config.Configuration;
  * @author Cheesier
  */
 
+/*
+ * Fixed the HOOKS from RightClicks
+ */
+
 //@SuppressWarnings("unused")
 public class Roomy extends JavaPlugin {
     private final RoomyPlayerListener playerListener = new RoomyPlayerListener(this);
-    private final RoomyBlockListener blockListener = new RoomyBlockListener(this);
     private final RoomyAPI roomyAPI = new RoomyAPI();
     
     //The plugin, Probably a bad way of doing it...
@@ -77,7 +80,7 @@ public class Roomy extends JavaPlugin {
         pm.registerEvent(Event.Type.PLAYER_JOIN, playerListener, Priority.Monitor, this);
         pm.registerEvent(Event.Type.PLAYER_QUIT, playerListener, Priority.Monitor, this);
         pm.registerEvent(Event.Type.PLAYER_ANIMATION, playerListener, Priority.Monitor, this);
-        pm.registerEvent(Event.Type.BLOCK_RIGHTCLICKED, blockListener, Priority.Monitor, this);
+        pm.registerEvent(Event.Type.PLAYER_INTERACT, playerListener, Priority.Monitor, this);
         
         
         // Say hello in a fancy way and load the rooms :)
