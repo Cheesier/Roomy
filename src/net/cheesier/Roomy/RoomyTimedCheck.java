@@ -27,7 +27,7 @@ public class RoomyTimedCheck implements Runnable {
 				Roomy.lastRoom.put(player, inRooms);
 				
 				RoomyEvent event = new RoomyEvent(RoomyEvent.Reason.ROOM_CHANGE, player, inRooms);
-				Roomy.plugin.getServer().getPluginManager().callEvent(event);
+				Roomy.getPlugin().getServer().getPluginManager().callEvent(event);
 			}
 		}
 	}

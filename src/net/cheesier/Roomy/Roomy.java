@@ -20,7 +20,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.util.Vector;
 import org.bukkit.util.config.Configuration;
 
-/**
+/**r
  * Roomy for Bukkit
  *
  * @author Cheesier
@@ -32,7 +32,7 @@ public class Roomy extends JavaPlugin {
     private final RoomyAPI roomyAPI = new RoomyAPI();
     
     //The plugin, Probably a bad way of doing it...
-    public static Roomy plugin;
+    private static Roomy plugin;
     
     //The implementation of Nijikokun's "Permission" plugin
     public static PermissionHandler Permissions = null; // permissions
@@ -59,6 +59,10 @@ public class Roomy extends JavaPlugin {
     
     public RoomyAPI getAPI() {
     	return roomyAPI;
+    }
+    
+    public static Roomy getPlugin() {
+    	return plugin;
     }
 
 

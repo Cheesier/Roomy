@@ -16,12 +16,12 @@ public class RoomyLibrary {
 	private static Logger log = Logger.getLogger("Minecraft");
 
 	// Say something like [Roomy] before we try talk to the commandline
-	private static String infoName = "[" + Roomy.plugin.getDescription().getName() + "]";
+	private static String infoName = "[" + Roomy.getPlugin().getDescription().getName() + "]";
 	
 	
 	// Returns the player of a specified string
 	public static Player getPlayerFromName(String playerName) {
-		List<Player> players = Roomy.plugin.getServer().matchPlayer(playerName);
+		List<Player> players = Roomy.getPlugin().getServer().matchPlayer(playerName);
 		// if not just one player popped up, say so :)
 		return (players.size() == 1 ? players.get(0) : null);
 	}
@@ -74,12 +74,12 @@ public class RoomyLibrary {
 	}
 	
 	public static void startCheckTimer(Player player) {
-		int timeId = Roomy.plugin.getServer().getScheduler().scheduleSyncRepeatingTask(Roomy.plugin, new RoomyTimedCheck(player), 0l, Roomy.timerInterval*20);
+		int timeId = Roomy.getPlugin().getServer().getScheduler().scheduleSyncRepeatingTask(Roomy.getPlugin(), new RoomyTimedCheck(player), 0l, Roomy.timerInterval*20);
 		Roomy.checkTimers.put(player, timeId);
 	}
 	
 	public static void startPlayerTracking() {
-		Player[] players = Roomy.plugin.getServer().getOnlinePlayers();
+		Player[] players = Roomy.getPlugin().getServer().getOnlinePlayers();
 		
 		for (Player player : players) {
 			startCheckTimer(player);

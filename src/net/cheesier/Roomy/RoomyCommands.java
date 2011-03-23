@@ -13,7 +13,7 @@ public class RoomyCommands {
 	private static Logger log = Logger.getLogger("Minecraft");
 
 	// Say something like [Roomy] before we try talk to the commandline
-	private static String infoName = "[" + Roomy.plugin.getDescription().getName() + "]";
+	private static String infoName = "[" + Roomy.getPlugin().getDescription().getName() + "]";
 
 
 	// Not used for now, waiting for the new system of permissions, if there is one...
@@ -79,14 +79,14 @@ public class RoomyCommands {
 			}
 
 			Roomy.track = !Roomy.track; // change the setting
-			Roomy.plugin.getServer().broadcastMessage("Tracking " + (Roomy.track? "¤2enabled": "¤cdisabled"));
+			Roomy.getPlugin().getServer().broadcastMessage("Tracking " + (Roomy.track? "¤2enabled": "¤cdisabled"));
 			System.out.println("Tracking " + (Roomy.track?"enabled":"disabled"));
 
 			return true;
 		}
 		else { //Console or something like that
 			Roomy.track = !Roomy.track; // change the setting
-			Roomy.plugin.getServer().broadcastMessage("Tracking " + (Roomy.track?"¤2enabled":"¤cdisabled"));
+			Roomy.getPlugin().getServer().broadcastMessage("Tracking " + (Roomy.track?"¤2enabled":"¤cdisabled"));
 			System.out.println("Tracking " + (Roomy.track?"enabled":"disabled"));
 			return true;
 		}
