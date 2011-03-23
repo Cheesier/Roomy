@@ -19,12 +19,6 @@ import org.bukkit.event.player.PlayerMoveEvent;
  * @author Cheesier
  */
 
-
-/*
- * Much nicer code now that all the commands moved outta here
- *
- */
-
 @SuppressWarnings("unused")
 public class RoomyPlayerListener extends PlayerListener {
 	private Roomy plugin = null;
@@ -43,6 +37,7 @@ public class RoomyPlayerListener extends PlayerListener {
 		Roomy.checkTimers.remove(event.getPlayer());
 	}
 
+	
 	// Leftclick marking a position (Position 1)
 	public void onPlayerAnimation(PlayerAnimationEvent event) {
 		Player player = event.getPlayer();
@@ -63,6 +58,7 @@ public class RoomyPlayerListener extends PlayerListener {
 			}
 		}
 	}
+	
 	
 	// Rightclick marking a position (Position 2)
 	public void onPlayerInteract(PlayerInteractEvent event) {

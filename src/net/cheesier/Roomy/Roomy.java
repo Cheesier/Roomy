@@ -26,11 +26,7 @@ import org.bukkit.util.config.Configuration;
  * @author Cheesier
  */
 
-/*
- * Fixed the HOOKS from RightClicks
- */
 
-//@SuppressWarnings("unused")
 public class Roomy extends JavaPlugin {
     private final RoomyPlayerListener playerListener = new RoomyPlayerListener(this);
     private final RoomyAPI roomyAPI = new RoomyAPI();
@@ -65,7 +61,7 @@ public class Roomy extends JavaPlugin {
     	return roomyAPI;
     }
 
-    
+
 
     public void onEnable() {
     	plugin = this;
