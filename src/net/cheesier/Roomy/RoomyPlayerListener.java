@@ -11,8 +11,10 @@ import org.bukkit.event.player.PlayerAnimationEvent;
 import org.bukkit.event.player.PlayerAnimationType;
 import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerListener;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 /**
  * Handle events for all Player related events
@@ -28,12 +30,12 @@ public class RoomyPlayerListener extends PlayerListener {
 	}
 
 	// Start a timer on login to check what rooms you are in
-	public void onPlayerJoin(PlayerEvent event) {
+	public void onPlayerJoin(PlayerJoinEvent event) {
 		RoomyLibrary.startCheckTimer(event.getPlayer());
 	}
 
 	// Stop the timer as the player logs out or waste cpu
-	public void onPlayerQuit(PlayerEvent event) {
+	public void onPlayerQuit(PlayerQuitEvent event) {
 		Roomy.checkTimers.remove(event.getPlayer());
 	}
 
