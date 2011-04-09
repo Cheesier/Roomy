@@ -1,8 +1,7 @@
 name: Roomy
 main: net.cheesier.Roomy.Roomy
-version: 1.1
-authors: 
-    - Cheesier
+version: 0.9
+author: Cheesier
 commands:
   setroom:
     description: Save a room with the given name
@@ -21,7 +20,7 @@ commands:
     usage: /<command>
     
   roomy:
-    description: Toggles the RoomyTook to mark a room
+    description: Toggles the RoomyTool to mark a room
     usage: /<command>
     
   inside:
