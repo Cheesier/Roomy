@@ -123,7 +123,7 @@ public class RoomyCommands {
 
 	
 	// Save all the rooms
-	public static boolean saveroomsCmd(CommandSender sender, String[] args) {		
+	public static boolean saveroomsCmd(CommandSender sender, String[] args) {
 		if ((sender instanceof Player)) {
 			Player player = (Player)sender;
 			if (!Roomy.Permissions.has(player, "Roomy.manage.save")) {
@@ -137,7 +137,7 @@ public class RoomyCommands {
 			log.info(infoName + player.getName() + " saved " + savedNumRooms + " Rooms");
 			return true;
 		}
-		else {
+		else { // Console
 			int savedNumRooms = RoomyFileManager.save();
 			log.info(infoName + " Saved " + savedNumRooms + " rooms");
 			return true;
@@ -197,7 +197,7 @@ public class RoomyCommands {
 				log.info(player.getName() + " Tried to delete room " + args[0] + " but it was not found");
 			}
 		}
-		else {
+		else { // Console
 			int deleted = RoomyFileManager.deleteRoom(args[0]);
 			if (deleted > 1) {
 				log.info("{Console} deleted " + deleted + " parts of " + args[0]);
@@ -228,7 +228,7 @@ public class RoomyCommands {
 			return true;
 			
 		}
-		else {
+		else { // Console
 			List<String> allRooms = RoomyLibrary.getAllRooms();
 			String strAllRooms = RoomyLibrary.stringlistToString(allRooms, false); // true for color, only players
 			log.info("Rooms: " + strAllRooms);
@@ -265,7 +265,7 @@ public class RoomyCommands {
 			}
 
 		}
-		else {
+		else { // Console
 			if (args.length == 1) {
 				Player target = RoomyLibrary.getPlayerFromName(args[0]);
 				if (!(target instanceof Player)) { // see if target actually is a player
