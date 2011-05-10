@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
@@ -29,8 +30,14 @@ public class RoomyLibrary {
 	
 	// Gets the players vector
 	public static Vector getPlayerVector(Player player) {
-		player.getLocation();
 		Location l = player.getLocation();
+		return new Vector(l.getBlockX(), l.getBlockY(), l.getBlockZ());
+	}
+	
+	
+	// Get a blocks vector
+	public static Vector getBlockVector(Block block) {
+		Location l = block.getLocation();
 		return new Vector(l.getBlockX(), l.getBlockY(), l.getBlockZ());
 	}
 	
@@ -52,11 +59,30 @@ public class RoomyLibrary {
 	}
 	
 	
-	public static boolean isInRoom(Player player, String room) {
-		if (getRoomsIn(player).contains(room.toLowerCase())) {
-			return true;
+	// Get a list of all the rooms a given block is inside of
+	public static List<String> getRoomsIn(Block block) {
+		List<String> roomsInside = new ArrayList<String>();
+		Iterator<SavedRoom> it = Roomy.savedRooms.iterator();
+		
+		while(it.hasNext()) {
+			SavedRoom sv = it.next();
+			if (sv.isInAABB(getBlockVector(block))) {
+				if (!roomsInside.contains(sv.getName())) {
+					roomsInside.add(sv.getName().toLowerCase());
+				}
+			}
 		}
-		return false;
+		return roomsInside;
+	}
+	
+	
+	public static boolean isInRoom(Player player, String room) {
+		return getRoomsIn(player).contains(room.toLowerCase());
+	}
+	
+	
+	public static boolean isInRoom(Block block, String room) {
+		return getRoomsIn(block).contains(room.toLowerCase());
 	}
 	
 	
