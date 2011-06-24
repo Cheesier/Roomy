@@ -1,7 +1,2 @@
-# Eclipse
-.project
-.classpath
-.settings/
-
 # Worthless binfolder :)
 bin/
